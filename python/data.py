@@ -11,7 +11,7 @@ class Data:
 
     def get_data(self):
         self.df = pd.read_csv(
-            "../data/shootings.csv",
+            "data/shootings.csv",
             sep=",")
 
     @staticmethod
@@ -35,20 +35,17 @@ class Data:
         return df.assign(age_group=pd.cut(df['age'], bins, labels=labels, include_lowest=True))
 
     @staticmethod
-    def filter_df(df, years_vals=None, race=None):
+    def filter_df(df, years_vals=None, race='Overall'):
         assert (len(years_vals) is None or len(
             years_vals) == 2), "years_vals doit être None ou de la forme [year_min, year_max]"
 
         assert (years_vals is not None or race is not None), "Renseigner years_vals ou race"
 
-        if years_vals:
-            years = range(years_vals[0], years_vals[1] + 1, 1)
-            if race:
-                return df.loc[(df["year"].isin(years) & (df["race"] == race))]
-            else:
-                return df.loc[df["year"].isin(years)]
-        elif race:
-            return df.loc[df["race"] == race]
+        years = range(years_vals[0], years_vals[1] + 1, 1)
+        if race == 'Overall':
+            return df.loc[df["year"].isin(years)]
+        else:
+            return df.loc[(df["year"].isin(years) & (df["race"] == race))]
 
     @staticmethod
     def groupby_df_one(df, by, col_agg):
