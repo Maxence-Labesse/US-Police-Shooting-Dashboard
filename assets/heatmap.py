@@ -14,7 +14,7 @@ corporate_layout = go.Layout(
     xaxis={'zeroline': False},
     yaxis={'zeroline': False},
     height=300,
-    width=480,
+    width=380,
     legend={
         'orientation': 'h',
         'yanchor': 'top',
