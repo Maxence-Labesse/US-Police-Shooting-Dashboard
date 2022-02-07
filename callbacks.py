@@ -166,28 +166,3 @@ def get_victim_behavior(dfjson):
 
     return str_illness, str_threat, str_flee
 
-
-"""
-
-    ########
-    # Test #
-    ########
-    @app.callback(
-        Output('table', 'data'),
-        Output('table', 'columns'),
-        Input('intermediate-value', 'children'))
-
-
-def update_table(dfjson):
-    df = pd.read_json(dfjson, orient='split')
-
-    df_bis = Data.groupby_df_one(df, "month_year", "crime")
-    l_col = df_bis.columns
-
-    data = df_bis.to_dict('records')
-    columns = [{'id': c, 'name': c} for c in l_col]
-
-    return data, columns
-
-
-"""
